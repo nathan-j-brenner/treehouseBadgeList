@@ -9,3 +9,7 @@ table, th, td {
 .no {
 	background-color: #FF0000;
 }
+
+#head {
+	margin-left: 130px;
+}
