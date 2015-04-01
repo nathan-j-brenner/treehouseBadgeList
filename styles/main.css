@@ -1,0 +1,11 @@
+table, th, td {
+	border: 1px solid black;
+}
+
+.yes {
+	background-color: #33CC33;
+}
+
+.no {
+	background-color: #FF0000;
+}
