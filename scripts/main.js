@@ -2,14 +2,29 @@
 var badges = ["Beginning HTML and CSS", "HTML First", "CSS: Cascading Style Sheets", "Getting Started with Git", "Working with Remote Repositories", "Basic Layout", "Creating HTML Content", "Adding Pages to a Website", "Branches", "Merging", "Workflows"]
 var interstion;
 
-// list of students enrolled in class
+//student information
+var students = [
+	{name:"Blake Johnson", treehouse:"ifics"},
+	{name:"Caleb Ozer", treehouse:"calebozer"},
+	{name:"Elizabeth Deering", treehouse:"elizabethdeering"},
+	{name:"Kaitlyn Dyer", treehouse:"katiedyer"},
+	{name:"Loren Van Wiel", treehouse:"lorenvanwiel"},
+	{name:"Louise Adkins", treehouse:"louiseadkins"},
+	{name:"Matthew King", treehouse:"mattking"},
+	{name:"Ryan Brown", treehouse:"ryanbrown"},
+	{name:"Sharon Gordon", treehouse:"sharongordon"},
+	{name:"Stephanie Argy", treehouse:"stephanieargy"},
+	{name:"Tim Hanson", treehouse:"timhanson"},
+	{name:"Traci Reed", treehouse:"tracireed"},
+];
+console.log(students[3].name);
+console.log(students.length);
 
+//student list in table
 var classList = function() {
 	var output_html;
-	var students = ["Blake Johnson", "Caleb Ozer", "Elizabeth Deering", "Kaitlyn Dyer", "Loren Van Wiel", "Louise Adkins", "Matthew King", "Ryan Brown", "Sharon Gordon", "Stephanie Argy", "Tim Hanson", "Traci Reed"];
 	for (var i=0; i<students.length; i++) {
-		console.log(students[i]);
-		output_html +="<tr> <th>" + students[i] + "</th> <tr>";
+		output_html +="<tr> <th>" + students[i].name + "</th> <tr>";
 	}
 	$("#badgeTable").html(output_html);
 };
@@ -17,7 +32,6 @@ var classList = function() {
 var badgeList = function() {     
 	var output_html;    
 	for (var i=0; i<badges.length; i++) {
-		console.log(badges[i]);
 		output_html +="<th>" + badges[i] + "</th>";
 	}
 	$("#tableHead").html(output_html);
@@ -41,5 +55,5 @@ xhr.onreadystatechange = function () {
 		console.log(intersection);
 	}
 }
-xhr.open('GET', 'http://teamtreehouse.com/katiedyer.json');
+xhr.open('GET', treehouseURL + 'ifics' + '.json');
 xhr.send();
