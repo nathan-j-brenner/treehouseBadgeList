@@ -1,24 +1,23 @@
 //global variables
 var badges = ["Beginning HTML and CSS", "HTML First", "CSS: Cascading Style Sheets", "Getting Started with Git", "Working with Remote Repositories", "Basic Layout", "Creating HTML Content", "Adding Pages to a Website", "Branches", "Merging", "Workflows"]
 var interstion;
+var treehouseURL = 'https://teamtreehouse.com/'
 
 //student information
 var students = [
-	{name:"Blake Johnson", treehouse:"ifics"},
-	{name:"Caleb Ozer", treehouse:"calebozer"},
-	{name:"Elizabeth Deering", treehouse:"elizabethdeering"},
-	{name:"Kaitlyn Dyer", treehouse:"katiedyer"},
-	{name:"Loren Van Wiel", treehouse:"lorenvanwiel"},
-	{name:"Louise Adkins", treehouse:"louiseadkins"},
-	{name:"Matthew King", treehouse:"mattking"},
-	{name:"Ryan Brown", treehouse:"ryanbrown"},
-	{name:"Sharon Gordon", treehouse:"sharongordon"},
-	{name:"Stephanie Argy", treehouse:"stephanieargy"},
-	{name:"Tim Hanson", treehouse:"timhanson"},
-	{name:"Traci Reed", treehouse:"tracireed"},
+	{name:"Blake Johnson", treehouse:"ifics", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Caleb Ozer", treehouse:"calebozer", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Elizabeth Deering", treehouse:"elizabethdeering", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Kaitlyn Dyer", treehouse:"katiedyer", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Loren Van Wiel", treehouse:"lorenvanwiel", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Louise Adkins", treehouse:"louiseadkins", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Matthew King", treehouse:"mattking", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Ryan Brown", treehouse:"ryanbrown", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Sharon Gordon", treehouse:"sharongordon", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Stephanie Argy", treehouse:"stephanieargy", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Tim Hanson", treehouse:"timhanson", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Traci Reed", treehouse:"tracireed", badgesCompleted:[], badgesIntersected:[]},
 ];
-console.log(students[3].name);
-console.log(students.length);
 
 //student list in table
 var classList = function() {
@@ -40,20 +39,22 @@ badgeList();
 classList();
 
 //pull json data from treehouse, locate common badges between what the student completed and what the instructor hopes the student to complete
-var treehouseBadges = [];
-var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function () {
-	if(xhr.readyState === 4) {
-		var students = JSON.parse(xhr.responseText);
-		for(var i = 0; i < badges.length; i += 1) {
-			var badgeArray = "<p>" + badges[i] + "<br /></p>"
+
+for(var i = 0; i<students.length; i++){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState === 4) {
+			var students = JSON.parse(xhr.responseText);
+			for(var i = 0; i < badges.length; i += 1) {
+				var badgeArray = "<p>" + badges[i] + "<br /></p>"
+			}
+			for(var i = 0; i < students.badges.length; i += 1) {
+				console.log(students.badges[i].name);
+				students[i].badgesCompleted.push(students.badges[i].name);
+			}
+			var intersection = _.intersection(students[i].badgesCompleted, badges);
 		}
-		for(var i = 0; i < students.badges.length; i += 1) {
-			treehouseBadges.push(students.badges[i].name);
-		}
-		var intersection = _.intersection(treehouseBadges, badges);
-		console.log(intersection);
 	}
+	xhr.open('GET', treehouseURL + students[i].treehouse + '.json');
+	xhr.send();
 }
-xhr.open('GET', treehouseURL + 'ifics' + '.json');
-xhr.send();
