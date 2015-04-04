@@ -1,7 +1,8 @@
 //global variables
-var badges = ["Beginning HTML and CSS", "HTML First", "CSS: Cascading Style Sheets", "Getting Started with Git", "Working with Remote Repositories", "Basic Layout", "Creating HTML Content", "Adding Pages to a Website", "Branches", "Merging", "Workflows"]
+var badges = ["Beginning HTML and CSS", "HTML First", "CSS: Cascading Style Sheets", "Getting Started with Git", "Working with Remote Repositories", "Basic Layout", "Creating HTML Content", "Adding Pages to a Website", "Branches", "Merging", "Workflows"];
 var interstion;
-var treehouseURL = 'https://teamtreehouse.com/'
+var treehouseURL = 'https://teamtreehouse.com/';
+var student;
 
 //student information
 var students = [
@@ -14,7 +15,7 @@ var students = [
 	{name:"Matthew King", treehouse:"mattking", badgesCompleted:[], badgesIntersected:[]},
 	{name:"Ryan Brown", treehouse:"ryanbrown", badgesCompleted:[], badgesIntersected:[]},
 	{name:"Sharon Gordon", treehouse:"sharongordon", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Stephanie Argy", treehouse:"stephanieargy", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Stephanie Argy", treehouse:"stephanieargy", badgesCompleted:[], badgesIntersected:[]},,
 	{name:"Tim Hanson", treehouse:"timhanson", badgesCompleted:[], badgesIntersected:[]},
 	{name:"Traci Reed", treehouse:"tracireed", badgesCompleted:[], badgesIntersected:[]},
 ];
@@ -23,7 +24,7 @@ var students = [
 var classList = function() {
 	var output_html;
 	for (var i=0; i<students.length; i++) {
-		output_html +="<tr> <th>" + students[i].name + "</th> <tr>";
+		output_html +="<tr><th>" + students[i].name + "</th><tr>";
 	}
 	$("#badgeTable").html(output_html);
 };
@@ -38,23 +39,37 @@ var badgeList = function() {
 badgeList();
 classList();
 
-//pull json data from treehouse, locate common badges between what the student completed and what the instructor hopes the student to complete
 
-for(var i = 0; i<students.length; i++){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function () {
-		if(xhr.readyState === 4) {
-			var students = JSON.parse(xhr.responseText);
-			for(var i = 0; i < badges.length; i += 1) {
-				var badgeArray = "<p>" + badges[i] + "<br /></p>"
-			}
-			for(var i = 0; i < students.badges.length; i += 1) {
-				console.log(students.badges[i].name);
-				students[i].badgesCompleted.push(students.badges[i].name);
-			}
-			var intersection = _.intersection(students[i].badgesCompleted, badges);
+//list Blake's treehouse username
+console.log(students[0].treehouse);
+//test run for one student THIS CODE WORKS
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function () {
+	if(xhr.readyState === 4) {
+		var student = JSON.parse(xhr.responseText);
+		//list Blake's json data
+		console.log(student);
+		//display the number of badges blake has completed
+		console.log(student.badges.length);
+		// display one badge name
+		console.log(student.badges[0].name);
+		// display all of Blake's badges
+		for(var i = 0; i<student.badges.length; i++){
+			console.log(student.badges[i].name);
+			//store student.badges[i].name into students.
+			students[0].badgesCompleted.push(student.badges[i].name);
 		}
+		//list updated array of students[0].badgesCompleted
+		console.log(students[0].badgesCompleted);
+		//display common elements of badges and students badges
+		var intersection = _.intersection(students[0].badgesCompleted, badges);
+		console.log("nate is awesome");
+		// console.log(intersection);
+		students[0].badgesIntersected.push(intersection);
+		console.log(students[0].badgesIntersected[0]);
 	}
-	xhr.open('GET', treehouseURL + students[i].treehouse + '.json');
-	xhr.send();
 }
+xhr.open('GET', treehouseURL + students[0].treehouse + '.json');
+xhr.send();
+
+
