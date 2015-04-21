@@ -13,7 +13,7 @@ var students = [
 	{name:"Loren Van Wiel", treehouse:"lorenvanwiel", badgesCompleted:[], badgesIntersected:[]},
 	{name:"Louise Adkins", treehouse:"louiseadkins", badgesCompleted:[], badgesIntersected:[]},
 	{name:"Matthew King", treehouse:"mattking", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Ryan Brown", treehouse:"ryanbrown", badgesCompleted:[], badgesIntersected:[]},
+	{name:"Ryan Brown", treehouse:"ryanbrown20", badgesCompleted:[], badgesIntersected:[]},
 	{name:"Sharon Gordon", treehouse:"sharongordon", badgesCompleted:[], badgesIntersected:[]},
 	{name:"Stephanie Argy", treehouse:"stephanieargy", badgesCompleted:[], badgesIntersected:[]},,
 	{name:"Tim Hanson", treehouse:"timhanson", badgesCompleted:[], badgesIntersected:[]},
@@ -39,22 +39,49 @@ var badgeList = function() {
 // classList();
 
 //This code will find the common badges between what one student has done and what the instructor wants the student to do
-console.log(students[12].name)
+console.log(students[7].name)
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
 	if(xhr.readyState === 4) {
 		var student = JSON.parse(xhr.responseText);
 		for(var i = 0; i<student.badges.length; i++){
-			students[12].badgesCompleted.push(student.badges[i].name);
+			students[7].badgesCompleted.push(student.badges[i].name);
 		}
 		//display common elements of badges and students badges
-		var intersection = _.intersection(students[12].badgesCompleted, badges);
-		students[12].badgesIntersected.push(intersection);
-		console.log(students[12].badgesIntersected[0]);
+		var intersection = _.intersection(students[7].badgesCompleted, badges);
+		students[7].badgesIntersected.push(intersection);
+		console.log(students[7].badgesIntersected[0]);
 	}
 }
 // xhr.open('GET', treehouseURL + students[12].treehouse + '.json');
 // xhr.send();
+
+console.log(students[0].name)
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function () {
+	if(xhr.readyState === 4) {
+		var student = JSON.parse(xhr.responseText);
+		// //list Blake's json data
+		// console.log(student);
+		// //display the number of badges blake has completed
+		// console.log(student.badges.length);
+		// // display one badge name
+		// console.log(student.badges[0].name);
+		// // display all of Blake's badges
+		for(var i = 0; i<student.badges.length; i++){
+			console.log(student.badges[i].name);
+			//store student.badges[i].name into students.
+			students[0].badgesCompleted.push(student.badges[i].name);
+		}
+		//display common elements of badges and students badges
+		var intersection = _.intersection(students[0].badgesCompleted, badges);
+		// console.log(intersection);
+		students[0].badgesIntersected.push(intersection);
+		console.log(students[0].badgesIntersected[0]);
+	}
+}
+xhr.open('GET', treehouseURL + students[0].treehouse + '.json');
+xhr.send();
 
 
 //Loop for the same function that starts on line 43.  This should go through each student, pull their json file, and list their intersected badges
