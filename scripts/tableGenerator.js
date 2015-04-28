@@ -1,31 +1,19 @@
-
-var classNames = ["console basics", "git basics"]
-var badges = ["Student Name", "Treehouse Username", "Newbie", "Beginning HTML and CSS", "HTML First", "CSS: Cascading Style Sheets", "Why Version Control Matters", "Creating HTML Content", "Adding Pages to a Website", "Getting Started with Git", "Working with Remote Repositories", "Getting Started with CSS", "Base Selectors", "Understanding Values and Units", "Basic Layout", "Float Layout", "Customizing Colors and Fonts", "Styling Web Pages and Navigation", "Responsive Web Design and Testing", "Sharing a Website", "Debugging html and css problems", "Branches", "Merging", "Workflows", "The Box Model", "Designing with the Latest Features", "Fundamental Concepts", "Text, Fonts, Lists", "Backgrounds and Borders", "CSS Gradients", "Chrome DevTools Basics", "Media Basics", "Introducing JavaScript", "Storing and Tracking information with Variables", "Working with Numbers", "Making Decisions with Conditional Statements", "Creating Reusable Code with Functions", "Simplify Repetitive Tasks with Loops", "Tracking Multiple Items with Arrays", "Tracking Data Using Ojects", "Introduction to jQuery", "Introduction to Front-End Frameworks", "Prototyping with Bootstrap"];
-var students = [
-	{name:"Blake Johnson", treehouse:"ifics", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Caleb Ozer", treehouse:"calebozer", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Elizabeth Deering", treehouse:"elizabethdeering", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Kaitlyn Dyer", treehouse:"katiedyer", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Loren Van Wiel", treehouse:"lorenvanwiel", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Louise Adkins", treehouse:"louiseadkins", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Matthew King", treehouse:"mattking", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Ryan Brown", treehouse:"ryanbrown20", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Sharon Gordon", treehouse:"sharongordon", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Stephanie Argy", treehouse:"stephanieargy", badgesCompleted:[], badgesIntersected:[]},,
-	{name:"Tim Hanson", treehouse:"timhanson", badgesCompleted:[], badgesIntersected:[]},
-	{name:"Traci Reed", treehouse:"tracireed", badgesCompleted:[], badgesIntersected:[]},
-];
-
 $(document).ready(function(){
 	//create badge list in first row
 	for(var i = 0; i < badges.length; i++){
-		$classNameBox = $('<td>' + badges[i] + '</td>');
+		$classNameBox = $('<th>' + badges[i] + '</th>');
 		$('#courses').append($classNameBox);
 	}
 	//create list of students
 	for(var i = 0; i < students.length; i++){
-		$studentBox = $('<tr><td class="studentRow">' + students[i].name + '</tr>');
+		$studentBox = $('<tr class="studentRow"><th class="studentName">' + students[i].name + '</tr>');
 		$("#sample").append($studentBox);
+
+	}
+	//add boxes on one student's row
+	//for every student, append an empty td for each badge
+	for(var i = 0; i < badges.length; i++){
+		$('.studentRow').append("<td></td>");
 	}
 
 });
