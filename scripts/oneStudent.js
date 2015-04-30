@@ -1,15 +1,3 @@
-
-// var xhr = new XMLHttpRequest(); //create XMLHttpRequest object
-// xhr.onreadystatechange = function() {
-// 	if(xhr.readystate === 4) {
-// 		var student = JSON.parse(xhr.responseText);
-// 		console.log(typeof student);
-// 	}
-// };
-//open the request
-// xhr.open('GET', 'https://teamtreehouse.com/nathanbrenner.json');
-// xhr.send();
-
 console.log(students[0].name)
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
